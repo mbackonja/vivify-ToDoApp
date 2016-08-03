@@ -4,11 +4,12 @@
   "devDependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.1",
+    "raw-loader": "^0.5.1",
     "typescript": "^1.8.10",
     "typescript-decorate": "^1.0.0",
     "typescript-extends": "^1.0.1",
-    "typescript-param": "^1.0.0",
     "typescript-metadata": "^1.0.0",
+    "typescript-param": "^1.0.0",
     "typings": "^1.0.4"
   },
   "scripts": {

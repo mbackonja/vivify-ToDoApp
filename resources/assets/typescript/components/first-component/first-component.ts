@@ -4,10 +4,7 @@ import { MdInput } from '@angular2-material/input';
 
 @Component({
   selector: 'my-app',
-  template: `
-    <md-input placeholder="New Checklist"></md-input>
-    <button md-raised-button color="primary">Click</button>
-  `,
+  template: require('./first-component.html'),
   directives: [ MdButton, MdInput ]
 })
 export class AppComponent { }

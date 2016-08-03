@@ -43,6 +43,9 @@ elixir(function(mix) {
                     test: /\.ts$/,
                     loader: 'awesome-typescript-loader',
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.html$/, loader: 'raw-loader'
                 }
             ]
         },
