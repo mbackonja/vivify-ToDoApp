@@ -1,0 +1,11 @@
+<h1>Laravel Angular2 Material</h1>
+
+<ul style="display: block;">
+  <li *ngFor="let checklist of checklists">{{ checklist }}</li>
+</ul>
+
+<div style="display:block">
+  <md-input placeholder="New Checklist" [(ngModel)]="newChecklist"></md-input>
+</div>
+
+<button md-raised-button color="primary" (click)="saveChecklist()">Save</button>

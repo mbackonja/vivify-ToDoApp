@@ -30,7 +30,7 @@ elixir(function(mix) {
      **/
     mix.webpack({
         vendor: 'vendor.ts',
-        app: 'app.ts'
+        app: 'main.ts'
     }, {
         debug: true,
         devtool: 'source-map',
@@ -78,6 +78,8 @@ elixir(function(mix) {
              })*/
         ]
     }, 'public/js', 'resources/assets/typescript');
+
+    mix.version([ 'js/app.js', 'js/vendor.js', 'css/app.css' ]);
 
     /**
      * LiveReload
