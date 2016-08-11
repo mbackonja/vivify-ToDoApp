@@ -1,18 +1,18 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { MdButton } from '@angular2-material/button';
 import { MdInput } from '@angular2-material/input';
 
 @Component({
   selector: 'my-app',
   template: require('./app.component.html'),
-  directives: [ MdButton, MdInput ]
+  directives: [ MdInput, MdButton ]
 })
 export class AppComponent {
-  public newChecklist = '';
-  public checklists = [];
+  public newChecklist: string = '';
+  public checklists: string[] = [];
 
-  saveChecklist() {
-    if(this.newChecklist) {
+  saveChecklist(): void {
+    if (this.newChecklist) {
       this.checklists.push(this.newChecklist);
       this.newChecklist = '';
     }

@@ -38,6 +38,13 @@ elixir(function(mix) {
             extensions: ['', '.ts', '.js']
         },
         module: {
+            preLoaders: [
+                {
+                    test: /\.ts$/,
+                    loader: 'tslint-loader',
+                    exclude: /node_modules/
+                }
+            ],
             loaders: [
                 {
                     test: /\.ts$/,
@@ -76,7 +83,12 @@ elixir(function(mix) {
              minimize: true,
              mangle: false
              })*/
-        ]
+        ],
+        tslint: {
+            emitErrors: false,
+            failOnHint: false,
+            resourcePath: 'resources/assets/typescript'
+        }
     }, 'public/js', 'resources/assets/typescript');
 
     mix.version([ 'js/app.js', 'js/vendor.js', 'css/app.css' ]);

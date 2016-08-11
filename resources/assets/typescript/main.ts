@@ -1,11 +1,6 @@
 /// <reference path="typings/index.d.ts" />
-import { AppComponent } from './app/app.component';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic }    from '@angular/platform-browser-dynamic';
 
-enableProdMode();
-bootstrap(<Function>AppComponent, [
-  disableDeprecatedForms(),
-  provideForms()
-]);
+import { AppModule } from './app/app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule);
