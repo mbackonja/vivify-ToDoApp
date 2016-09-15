@@ -39,11 +39,11 @@ elixir(function(mix) {
         },
         module: {
             preLoaders: [
-                {
-                    test: /\.ts$/,
-                    loader: 'tslint-loader',
-                    exclude: /node_modules/
-                }
+                // {
+                //     test: /\.ts$/,
+                //     loader: 'tslint-loader',
+                //     exclude: /node_modules/
+                // }
             ],
             loaders: [
                 {
@@ -75,14 +75,7 @@ elixir(function(mix) {
                 chunks: [
                     'app'
                 ]
-            }),
-            /*new webpack.optimize.UglifyJsPlugin({
-             compress: {
-             warnings: false
-             },
-             minimize: true,
-             mangle: false
-             })*/
+            })
         ],
         tslint: {
             emitErrors: false,
@@ -97,8 +90,7 @@ elixir(function(mix) {
      * LiveReload
      **/
     mix.livereload([
-        'public/css/**/*',
-        'public/fonts/**/*',
-        'public/js/**/*'
+        'public/build/css/*',
+        'public/build/js/*'
     ]);
 });

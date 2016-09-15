@@ -2,7 +2,7 @@ import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MdButtonModule } from '@angular2-material/button';
-import { HTTP_BINDINGS } from '@angular/http';
+import { MdInputModule } from '@angular2-material/input';
 import 'rxjs/add/operator/map';
 
 import { AppComponent }  from './app.component';
@@ -10,8 +10,7 @@ import { AppComponent }  from './app.component';
 enableProdMode();
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, MdButtonModule ],
-  providers:    [ HTTP_BINDINGS ],
+  imports:      [ BrowserModule, FormsModule, MdInputModule, MdButtonModule ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })

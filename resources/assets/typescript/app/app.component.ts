@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { MdButton } from '@angular2-material/button';
-import { MdInput } from '@angular2-material/input';
 
 @Component({
   selector: 'my-app',
-  template: require('./app.component.html'),
-  directives: [ MdInput, MdButton ]
+  template: require('./app.component.html')
 })
 export class AppComponent {
   public newChecklist: string = '';
