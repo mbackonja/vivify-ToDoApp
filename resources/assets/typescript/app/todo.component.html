@@ -1,0 +1,19 @@
+<h1>ToDo List</h1>
+<button (click)="create()">Create New ToDo</button><br />
+UnCompleted:
+<ul>
+    <li *ngFor="let todo of todoUnComplete">
+        {{ todo.text }}, {{ todo.priority }}
+        <button (click)="edit(todo.id)">Edit</button>
+        <button (click)="complete(todo.id)">Complete</button>
+        <button (click)="delete(todo.id)">Delete</button>
+    </li>
+</ul>
+Completed:
+<ul>
+    <li *ngFor="let todo of todoComplete">
+        {{ todo.text }}, {{ todo.priority }}
+        <button (click)="delete(todo.id)">Delete</button>
+    </li>
+</ul>
+<button (click)="onLogout()">LogOut</button>

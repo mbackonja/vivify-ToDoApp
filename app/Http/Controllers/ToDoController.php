@@ -24,7 +24,8 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        return response()->json(Auth::user()->todos);
+        return response()->json(Auth::user()->todos()->get(['id', 'text', 'priority', 'complete']));
+        //return response()->json(Todo::get(['id', 'text', 'priority', 'complete']));
     }
 
     /**
@@ -53,7 +54,13 @@ class ToDoController extends Controller
         if ($validator->fails())
             return response()->json($validator->messages(), 400);
 
-        return Auth::user()->todos()->create($request->all());
+        $newTodo = Auth::user()->todos()->create($request->all());
+
+        if(!$newTodo)
+            return response()->json(['success' => 'false'], 400);
+        else
+            return response()->json(['success' => 'true']);
+
     }
 
     /**
@@ -64,7 +71,7 @@ class ToDoController extends Controller
      */
     public function show($id)
     {
-        return Auth::user()->todos()->whereId($id)->get();
+        return Auth::user()->todos()->whereId($id)->get(['id', 'text', 'priority', 'complete']);
     }
 
     /**
@@ -111,8 +118,11 @@ class ToDoController extends Controller
         }
         elseif ($request->input('type') == 'complete')
         {
-
-            return $todo->update(['complete' => true]);
+            $updateTodo = $todo->update(['complete' => true]);
+            if(!$updateTodo)
+                return response()->json(['success' => 'false'], 400);
+            else
+                return response()->json(['success' => 'true']);
         }
         else
         {

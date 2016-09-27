@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <base href="/" />
         <title>Laravel Angular2 Material</title>
         <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
     </head>

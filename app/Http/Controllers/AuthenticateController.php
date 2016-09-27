@@ -14,11 +14,11 @@ class AuthenticateController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $all = $request->json()->all();
 
         try {
             // verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (! $token = JWTAuth::attempt($all)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {

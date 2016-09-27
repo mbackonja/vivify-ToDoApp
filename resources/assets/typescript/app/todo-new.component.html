@@ -1,0 +1,17 @@
+<button (click)="back()">Back</button><br />
+
+<form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+    <input *ngIf="todo" type="hidden" name="id" [(ngModel)]="model.id" /><br />
+
+    <label for="text">ToDo Text</label>
+    <input type="text" id="text" name="text" [(ngModel)]="model.text" required /><br />
+
+    <label for="priority">ToDo Priority</label>
+    <select id="prioroty" name="priority" [(ngModel)]="model.priority" required>
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+    </select>
+
+    <button type="submit" [disabled]="!todoForm.form.valid">{{ buttonText }}</button>
+</form>

@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
+
 
 @Component({
-  selector: 'my-app',
-  template: require('./app.component.html')
+    selector: 'my-app',
+    template: require('./app.component.html')
 })
-export class AppComponent {
-  public newChecklist: string = '';
-  public checklists: string[] = [];
+export class AppComponent implements OnInit {
+    private loggedIn: boolean;
 
-  saveChecklist(): void {
-    if (this.newChecklist) {
-      this.checklists.push(this.newChecklist);
-      this.newChecklist = '';
+    constructor(private authenticationService: AuthenticationService) { }
+
+    ngOnInit(): void {
+        this.loggedIn = this.authenticationService.loggedIn();
     }
-  }
 }
