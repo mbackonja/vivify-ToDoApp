@@ -24,7 +24,7 @@ export class TodoComponent implements OnInit {
     constructor(private todoService: TodoService, private authenticationService: AuthenticationService, private router: Router) { }
 
     getAllTodo(): void {
-        this.todoService.index().then(response => {
+        this.todoService.index().subscribe(response => {
 
             for(let todo of response) {
                 if(todo.complete)
@@ -44,37 +44,41 @@ export class TodoComponent implements OnInit {
     }
 
     complete(id: number): void {
-        if(this.todoService.complete(id)) {
-            for(let todo of this.todoUnComplete) {
-                if(todo.id == id) {
-                    this.todoComplete.push(todo);
-                    this.todoUnComplete.splice(this.todoUnComplete.indexOf(todo), 1);
-                    break;
-                }
-            }
-        }
-    }
-
-    delete(id: number): void {
-        if(this.todoService.destroy(id)) {
-            let found = false;
-            for(let todo of this.todoUnComplete) {
-                if(todo.id == id) {
-                    this.todoUnComplete.splice(this.todoUnComplete.indexOf(todo), 1);
-                    found = true;
-                    break;
-                }
-            }
-
-            if(!found) {
-                for(let todo of this.todoComplete) {
+        this.todoService.complete(id).subscribe(response => {
+            if(response) {
+                for(let todo of this.todoUnComplete) {
                     if(todo.id == id) {
-                        this.todoComplete.splice(this.todoComplete.indexOf(todo), 1);
+                        this.todoComplete.push(todo);
+                        this.todoUnComplete.splice(this.todoUnComplete.indexOf(todo), 1);
                         break;
                     }
                 }
             }
-        }
+        });
+    }
+
+    delete(id: number): void {
+        this.todoService.destroy(id).subscribe(response => {
+            if(response) {
+                let found = false;
+                for(let todo of this.todoUnComplete) {
+                    if(todo.id == id) {
+                        this.todoUnComplete.splice(this.todoUnComplete.indexOf(todo), 1);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found) {
+                    for(let todo of this.todoComplete) {
+                        if(todo.id == id) {
+                            this.todoComplete.splice(this.todoComplete.indexOf(todo), 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
 
     edit(id: number): void {

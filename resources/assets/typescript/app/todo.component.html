@@ -3,7 +3,7 @@
 UnCompleted:
 <ul>
     <li *ngFor="let todo of todoUnComplete">
-        {{ todo.text }}, {{ todo.priority }}
+        {{ todo.text }}, {{ todo.priority == 1 ? 'Low' : todo.priority == 2 ? 'Mid' : 'Hi'  }}
         <button (click)="edit(todo.id)">Edit</button>
         <button (click)="complete(todo.id)">Complete</button>
         <button (click)="delete(todo.id)">Delete</button>
@@ -12,7 +12,7 @@ UnCompleted:
 Completed:
 <ul>
     <li *ngFor="let todo of todoComplete">
-        {{ todo.text }}, {{ todo.priority }}
+        {{ todo.text }}, {{ todo.priority == 1 ? 'Low' : todo.priority == 2 ? 'Mid' : 'Hi'  }}
         <button (click)="delete(todo.id)">Delete</button>
     </li>
 </ul>

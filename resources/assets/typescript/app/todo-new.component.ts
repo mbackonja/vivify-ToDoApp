@@ -19,7 +19,7 @@ export class TodoNewComponent implements OnInit {
         this.activatedRoute.params.forEach((params: Params) => {
             let id = +params['id'];
             if(!isNaN(id)) {
-                this.todoService.show(id).then(todo => {
+                this.todoService.show(id).subscribe(todo => {
                     this.todo = todo[0];
                     this.model.id = this.todo.id;
                     this.model.text = this.todo.text;
@@ -38,15 +38,21 @@ export class TodoNewComponent implements OnInit {
         if(this.todo) {
             this.todo.text = this.model.text;
             this.todo.priority = this.model.priority;
-            if(this.todoService.update(this.todo))
-                this.router.navigate(['/']);
+
+            this.todoService.update(this.todo).subscribe(response => {
+                if(response)
+                    this.router.navigate(['/']);
+            });
+
+
         } else {
             this.todo = new Todo(null, this.model.text, this.model.priority, false);
-            if(this.todoService.store(this.todo))
-                this.router.navigate(['/']);
+
+            this.todoService.store(this.todo).subscribe(response => {
+                if(response)
+                    this.router.navigate(['/']);
+            });
         }
-
-
     }
 
     back(): void {

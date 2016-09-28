@@ -15,7 +15,8 @@ class ToDoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+        $this->middleware('jwt.auth');
+        $this->middleware('jwt-refresh');
     }
     /**
      * Display a listing of the resource.
@@ -112,9 +113,15 @@ class ToDoController extends Controller
                 return response()->json($validator->messages(), 400);
 
             $todo = Auth::user()->todos()->whereId($id);
-            return $todo->update([
+            $todo->update([
                 'text'      => $request->input('text'),
                 'priority'  => $request->input('priority')]);
+
+            if(!$todo)
+                return response()->json(['success' => 'false'], 400);
+            else
+                return response()->json(['success' => 'true']);
+
         }
         elseif ($request->input('type') == 'complete')
         {
@@ -139,6 +146,9 @@ class ToDoController extends Controller
     public function destroy($id)
     {
         $todo = Auth::user()->todos()->whereId($id);
-        return $todo->delete();
+        if(!$todo->delete())
+            return response()->json(['success' => 'false'], 400);
+        else
+            return response()->json(['success' => 'true']);
     }
 }
